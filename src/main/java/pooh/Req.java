@@ -2,6 +2,16 @@ package pooh;
 
 import java.text.MessageFormat;
 
+/**
+ * Request method
+ * parses request
+ * @method - method of rerquest Post or Get
+ * @mode - type of service/type of message
+ * @text - request`s text
+ *
+ * @Kolesnikov Evgeniy
+ * version 1.0
+ */
 public class Req {
 
     private final String method;
@@ -12,13 +22,6 @@ public class Req {
         this.method = method;
         this.mode = mode;
         this.text = text;
-    }
-
-    //test mode method need to be deleted after completing program
-    public static void main(String[] args) {
-
-        System.out.println(Req.of("POST /queue/weather -d 'temperature=18'").toString());
-        System.out.println(Req.of("GET /queue/weather"));
     }
 
     public static Req of(String content) {
