@@ -11,11 +11,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Service with mode name "queue"
  * get`s the response and make the request
  * two method`s
+ *
+ * @version 1.0
  * @post - realization of post request
  * @get - realization of get request
- *
  * @Kolesnikov Evgeniy
- * @version 1.0
  */
 public class QueueService implements Service {
     ConcurrentHashMap<String, ConcurrentLinkedQueue<String>> queue = new ConcurrentHashMap<>();

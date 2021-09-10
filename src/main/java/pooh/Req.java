@@ -5,10 +5,10 @@ import java.text.MessageFormat;
 /**
  * Request method
  * parses request
+ *
  * @method - method of rerquest Post or Get
  * @mode - type of service/type of message
  * @text - request`s text
- *
  * @Kolesnikov Evgeniy
  * version 1.0
  */
@@ -26,11 +26,12 @@ public class Req {
 
     public static Req of(String content) {
         String method = content.split(" ")[0];
-        String mode = content.split( " ")[1];
+        String mode = content.split(" ")[1];
         String text = "";
 
         if (method.equals("POST")) {
-        text = content.split(" ")[3]; }
+            text = content.split(" ")[3];
+        }
 
         return new Req(method, mode, text);
     }

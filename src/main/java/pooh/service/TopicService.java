@@ -13,10 +13,11 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * Service with mode name "topic"
  * get`s the response and make the request
  * two method`s
+ *
+ * @version 1.0
  * @post - realization of post request
  * @get - realization of get request
  * @Kolesnikov Evgeniy
- * @version 1.0
  */
 public class TopicService implements Service {
 
@@ -46,12 +47,12 @@ public class TopicService implements Service {
         String name = req.mode().split("/")[2];
         String id = req.mode().split("/")[3];
         try {
-        if (req.text() != null) {
-        queue.get(id).add(req.text());
-        } else {
-            queue.get(id).add("Новая тема");
-        }
-        userMap.putIfAbsent(id, queue);
+            if (req.text() != null) {
+                queue.get(id).add(req.text());
+            } else {
+                queue.get(id).add("Новая тема");
+            }
+            userMap.putIfAbsent(id, queue);
         } catch (Exception e) {
             logger.error(e.getMessage(), e);
             return new Resp("Bad request",
@@ -65,11 +66,11 @@ public class TopicService implements Service {
         String name = req.mode().split("/")[2];
         try {
             queue.putIfAbsent(name, new ConcurrentLinkedQueue<>());
-        }  catch (Exception e) {
-        logger.error(e.getMessage(), e);
-        return new Resp("Bad request",
-                400);
-    }
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            return new Resp("Bad request",
+                    400);
+        }
         return new Resp("OK", 200);
     }
 }
