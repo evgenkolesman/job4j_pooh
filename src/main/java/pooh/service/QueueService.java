@@ -24,7 +24,7 @@ public class QueueService implements Service {
     public Resp process(Req req) {
         if (req.mode().split("/")[1].equals("queue")) {
             String name = req.mode().split("/")[2];
-            if(queue.get(name) == null) {
+            if (queue.get(name) == null) {
                 queue.putIfAbsent(name, new ConcurrentLinkedQueue<>());
             }
             queue.get(name).add(req.text());
