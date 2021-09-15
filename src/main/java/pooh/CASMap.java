@@ -13,11 +13,11 @@ public class CASMap {
         String name = "weather";
         queue.putIfAbsent(name, new ConcurrentLinkedQueue<>());
         queue.get(name).add("value");
-        //var text = queue.get(name, CASMap.emptyQueue()).poll();
+        var text = queue.get(name).poll();
     }
 
     private static String emptyQueue() {
-        return "Новая тема";
+        return null;
     }
 
 
