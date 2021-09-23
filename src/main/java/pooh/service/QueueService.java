@@ -17,7 +17,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
  * @get - realization of get request
  * @Kolesnikov Evgeniy
  */
+
 public class QueueService implements Service {
+
     ConcurrentHashMap<String, ConcurrentLinkedQueue<String>> queue = new ConcurrentHashMap<>();
 
     @Override
@@ -25,10 +27,12 @@ public class QueueService implements Service {
         if (req.mode().split("/")[1].equals("queue")) {
             String name = req.mode().split("/")[2];
             queue.putIfAbsent(name, new ConcurrentLinkedQueue<>());
-            queue.get(name).add(req.text());
+
             if (req.method().equals("POST")) {
+                queue.get(name).add(req.text());
                 return post(req);
             }
+
             if (req.method().equals("GET")) {
                 return get(req);
             }
@@ -36,7 +40,6 @@ public class QueueService implements Service {
         return new Resp("BadRequest",
                 400);
     }
-
 
     private Resp get(Req req) {
         String name = req.mode().split("/")[2];
